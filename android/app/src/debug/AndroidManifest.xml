@@ -9,7 +9,7 @@
         android:label="卞恺rocket"
         tools:replace="android:label">
         <service
-            android:name=".TileService"
+            android:name="com.follow.clash.TileService"
             android:label="卞恺rocket"
             tools:replace="android:label" />
     </application>
