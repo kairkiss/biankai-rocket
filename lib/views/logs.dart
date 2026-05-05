@@ -42,6 +42,17 @@ class _LogsViewState extends ConsumerState<LogsView> {
   List<Widget> _buildActions() {
     return [
       IconButton(
+        tooltip: '清空日志',
+        onPressed: () {
+          ref.read(logsProvider.notifier).clear();
+          _logs = [];
+          _logsStateNotifier.value = _logsStateNotifier.value.copyWith(
+            logs: [],
+          );
+        },
+        icon: const Icon(Icons.delete_sweep_outlined),
+      ),
+      IconButton(
         onPressed: () {
           _handleExport();
         },

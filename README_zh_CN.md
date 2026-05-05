@@ -4,13 +4,13 @@
 
 </div>
 
-## FlClash
+## 卞恺rocket
 
-[![Downloads](https://img.shields.io/github/downloads/chen08209/FlClash/total?style=flat-square&logo=github)](https://github.com/chen08209/FlClash/releases/)[![Last Version](https://img.shields.io/github/release/chen08209/FlClash/all.svg?style=flat-square)](https://github.com/chen08209/FlClash/releases/)[![License](https://img.shields.io/github/license/chen08209/FlClash?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/kairkiss/biankai-rocket?style=flat-square)](LICENSE)
 
-[![Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=flat-square&logo=telegram)](https://t.me/FlClash)
+基于 [chen08209/FlClash](https://github.com/chen08209/FlClash) 的个人 Android UI 魔改版，重点调整为简洁的类 iOS 信息架构，同时尽量保持原 VPN Service、Mihomo/ClashMeta 核心、订阅解析、节点切换、规则与日志底层逻辑稳定。
 
-基于ClashMeta的多平台代理客户端，简单易用，开源无广告。
+本项目继续遵循 GPLv3 开源协议，并保留原 FlClash 版权说明与 LICENSE。
 
 on Desktop:
 <p style="text-align: center;">
@@ -50,11 +50,11 @@ on Mobile:
 支持下列操作
 
    ```bash
-    com.follow.clash.action.START
+    com.biankai.rocket.action.START
     
-    com.follow.clash.action.STOP
+    com.biankai.rocket.action.STOP
     
-    com.follow.clash.action.TOGGLE
+    com.biankai.rocket.action.TOGGLE
    ```
 
 ## Download

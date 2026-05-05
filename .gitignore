@@ -50,6 +50,13 @@ CLAUDE.md
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/app/*.jks
+/android/app/*.keystore
+/android/app/key.properties
+/android/local.properties
+/private-subscriptions/
+private_subscriptions.*
+*.subscription.local
 /android/**/.cxx
 /android/**/build
 /android/common/**/.**/
@@ -64,6 +71,7 @@ CLAUDE.md
 /services/helper/target
 /macos/**/Package.resolved
 devtools_options.yaml
+env.json
 
 # FVM Version Cache
 .fvm/

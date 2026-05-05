@@ -28,6 +28,10 @@ class Logs extends _$Logs with AutoDisposeNotifierMixin {
   void addLog(Log value) {
     this.value = state.copyWith()..add(value);
   }
+
+  void clear() {
+    value = state.copyWith()..clear();
+  }
 }
 
 @Riverpod(keepAlive: true)

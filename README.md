@@ -4,13 +4,13 @@
 
 </div>
 
-## FlClash
+## 卞恺rocket
 
-[![Downloads](https://img.shields.io/github/downloads/chen08209/FlClash/total?style=flat-square&logo=github)](https://github.com/chen08209/FlClash/releases/)[![Last Version](https://img.shields.io/github/release/chen08209/FlClash/all.svg?style=flat-square)](https://github.com/chen08209/FlClash/releases/)[![License](https://img.shields.io/github/license/chen08209/FlClash?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/kairkiss/biankai-rocket?style=flat-square)](LICENSE)
 
-[![Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=flat-square&logo=telegram)](https://t.me/FlClash)
+Personal Android UI fork of [chen08209/FlClash](https://github.com/chen08209/FlClash), focused on a clean iOS-style interface while keeping the original VPN service, Mihomo/ClashMeta core, subscription parsing, proxy switching, rules, and low-level logging logic stable.
 
-A multi-platform proxy client based on ClashMeta, simple and easy to use, open-source and ad-free.
+This project remains open source under GPLv3. Original FlClash copyright notices and license are preserved.
 
 on Desktop:
 <p style="text-align: center;">
@@ -50,11 +50,11 @@ on Mobile:
 Support the following actions
 
    ```bash
-    com.follow.clash.action.START
+    com.biankai.rocket.action.START
     
-    com.follow.clash.action.STOP
+    com.biankai.rocket.action.STOP
     
-    com.follow.clash.action.TOGGLE
+    com.biankai.rocket.action.TOGGLE
    ```
 
 ## Download

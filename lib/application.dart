@@ -41,7 +41,68 @@ class ApplicationState extends ConsumerState<Application> {
     required Brightness brightness,
     int? primaryColor,
   }) {
-    return ref.read(genColorSchemeProvider(brightness));
+    final scheme = ref.read(genColorSchemeProvider(brightness));
+    final primary = Color(primaryColor ?? defaultPrimaryColor);
+    if (brightness == Brightness.light) {
+      return scheme.copyWith(
+        primary: primary,
+        secondary: primary,
+        surface: const Color(0xFFF5F5F7),
+        onSurface: const Color(0xFF111111),
+        onSurfaceVariant: const Color(0xFF6E6E73),
+        surfaceContainerLowest: Colors.white,
+        surfaceContainerLow: Colors.white,
+        surfaceContainer: Colors.white,
+        surfaceContainerHigh: const Color(0xFFF2F2F7),
+        surfaceContainerHighest: const Color(0xFFE5E5EA),
+        outline: const Color(0xFFC7C7CC),
+        outlineVariant: const Color(0xFFE5E5EA),
+      );
+    }
+    return scheme.copyWith(
+      primary: primary,
+      secondary: primary,
+      surface: const Color(0xFF000000),
+      onSurface: Colors.white,
+      onSurfaceVariant: const Color(0xFFAEAEB2),
+      surfaceContainerLowest: const Color(0xFF000000),
+      surfaceContainerLow: const Color(0xFF111111),
+      surfaceContainer: const Color(0xFF1C1C1E),
+      surfaceContainerHigh: const Color(0xFF2C2C2E),
+      surfaceContainerHighest: const Color(0xFF3A3A3C),
+      outline: const Color(0xFF48484A),
+      outlineVariant: const Color(0xFF2C2C2E),
+    );
+  }
+
+  ThemeData _buildTheme(ColorScheme colorScheme) {
+    return ThemeData(
+      useMaterial3: true,
+      pageTransitionsTheme: _pageTransitionsTheme,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: colorScheme.surface,
+      appBarTheme: AppBarTheme(
+        centerTitle: false,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: colorScheme.surface,
+        foregroundColor: colorScheme.onSurface,
+      ),
+      dividerTheme: DividerThemeData(
+        color: colorScheme.outlineVariant,
+        space: 1,
+        thickness: 0.6,
+      ),
+      listTileTheme: ListTileThemeData(
+        iconColor: colorScheme.primary,
+        textColor: colorScheme.onSurface,
+        subtitleTextStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+      ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: colorScheme.surfaceContainer,
+        indicatorColor: colorScheme.primary.withValues(alpha: 0.12),
+      ),
+    );
   }
 
   @override
@@ -139,18 +200,14 @@ class ApplicationState extends ConsumerState<Application> {
           locale: utils.getLocaleForString(locale),
           supportedLocales: AppLocalizations.delegate.supportedLocales,
           themeMode: themeProps.themeMode,
-          theme: ThemeData(
-            useMaterial3: true,
-            pageTransitionsTheme: _pageTransitionsTheme,
-            colorScheme: _getAppColorScheme(
+          theme: _buildTheme(
+            _getAppColorScheme(
               brightness: Brightness.light,
               primaryColor: themeProps.primaryColor,
             ),
           ),
-          darkTheme: ThemeData(
-            useMaterial3: true,
-            pageTransitionsTheme: _pageTransitionsTheme,
-            colorScheme: _getAppColorScheme(
+          darkTheme: _buildTheme(
+            _getAppColorScheme(
               brightness: Brightness.dark,
               primaryColor: themeProps.primaryColor,
             ).toPureBlack(themeProps.pureBlack),
