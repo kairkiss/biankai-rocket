@@ -10,6 +10,8 @@
 - App 名称改为「卞恺rocket」。
 - Android 包名改为 `com.biankai.rocket`。
 - 修复改包名后 Android Manifest 仍使用相对组件名导致启动闪退的问题。
+- 修复订阅下载 User-Agent 包含中文 App 名可能导致 HTTP 请求失败的问题。
+- 补充处理冷启动时的 `clash://install-config` 配置导入链接。
 - 首页改为简洁状态面板和大开关布局。
 - 增加配置、代理、规则、日志、设置的集中入口。
 - 主题改为浅色白/浅灰、深色黑/深灰、iOS 蓝强调色。

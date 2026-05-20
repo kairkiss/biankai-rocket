@@ -20,6 +20,8 @@ val mStoreFile: File = file(localProperties.getProperty("storeFile") ?: "biankai
 val mStorePassword: String? = localProperties.getProperty("storePassword")
 val mKeyAlias: String? = localProperties.getProperty("keyAlias")
 val mKeyPassword: String? = localProperties.getProperty("keyPassword")
+val enableReleaseMinify =
+    localProperties.getProperty("enableReleaseMinify")?.toBooleanStrictOrNull() ?: true
 val isRelease =
     mStoreFile.exists() && mStorePassword != null && mKeyAlias != null && mKeyPassword != null
 
@@ -67,8 +69,8 @@ android {
         }
 
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = enableReleaseMinify
+            isShrinkResources = enableReleaseMinify
             if (isRelease) {
                 signingConfig = signingConfigs.getByName("release")
             } else {

@@ -15,21 +15,28 @@ class LinkManager {
     _appLinks = AppLinks();
   }
 
+  void _handleUri(Uri uri, Function(String url) installConfigCallBack) {
+    commonPrint.log('onAppLink: $uri');
+    if (uri.host == 'install-config') {
+      final parameters = uri.queryParameters;
+      final url = parameters['url'];
+      if (url != null) {
+        installConfigCallBack(url);
+      }
+    }
+  }
+
   Future<void> initAppLinksListen(
-      Function(String url) installConfigCallBack) async {
+    Function(String url) installConfigCallBack,
+  ) async {
     commonPrint.log('initAppLinksListen');
     destroy();
+    final initialUri = await _appLinks.getInitialLink();
+    if (initialUri != null) {
+      _handleUri(initialUri, installConfigCallBack);
+    }
     subscription = _appLinks.uriLinkStream.listen(
-      (uri) {
-        commonPrint.log('onAppLink: $uri');
-        if (uri.host == 'install-config') {
-          final parameters = uri.queryParameters;
-          final url = parameters['url'];
-          if (url != null) {
-            installConfigCallBack(url);
-          }
-        }
-      },
+      (uri) => _handleUri(uri, installConfigCallBack),
     );
   }
 
