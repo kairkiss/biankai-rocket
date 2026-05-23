@@ -29,6 +29,7 @@ _AppSettingProps _$AppSettingPropsFromJson(Map<String, dynamic> json) =>
       hidden: json['hidden'] as bool? ?? false,
       expertMode: json['expertMode'] as bool? ?? false,
       developerMode: json['developerMode'] as bool? ?? false,
+      useBiankaiDefaultRules: json['useBiankaiDefaultRules'] as bool? ?? true,
       restoreStrategy:
           $enumDecodeNullable(
             _$RestoreStrategyEnumMap,
@@ -61,6 +62,7 @@ Map<String, dynamic> _$AppSettingPropsToJson(_AppSettingProps instance) =>
       'hidden': instance.hidden,
       'expertMode': instance.expertMode,
       'developerMode': instance.developerMode,
+      'useBiankaiDefaultRules': instance.useBiankaiDefaultRules,
       'restoreStrategy': _$RestoreStrategyEnumMap[instance.restoreStrategy]!,
       'showTrayTitle': instance.showTrayTitle,
     };

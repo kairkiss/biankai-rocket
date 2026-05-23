@@ -56,8 +56,9 @@ const clashConfigKey = 'clash_config';
 const configKey = 'config';
 const double dialogCommonWidth = 300;
 const repository = 'kairkiss/biankai-rocket';
+const brandingLogoPath = 'assets/branding/biankai_rocket_logo.png';
 const expertModePasswordHash =
-    '14bb7d51f04df9c4d1c6a4e61eff54b33b6954ed553c2b2e9d2a01fa8ff6c8d7';
+    '384fde3636e6e01e0194d2976d8f26410af3e846e573379cb1a09e2f0752d8cc';
 const defaultExternalController = '127.0.0.1:9090';
 const maxMobileWidth = 600;
 const maxLaptopWidth = 840;

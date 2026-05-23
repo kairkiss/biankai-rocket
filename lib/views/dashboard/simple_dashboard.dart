@@ -6,8 +6,7 @@ import 'package:biankai_rocket/controller.dart';
 import 'package:biankai_rocket/enum/enum.dart';
 import 'package:biankai_rocket/models/models.dart';
 import 'package:biankai_rocket/providers/providers.dart';
-import 'package:biankai_rocket/state.dart';
-import 'package:biankai_rocket/views/proxies/proxies.dart';
+import 'package:biankai_rocket/views/simple/simple_proxies.dart';
 import 'package:biankai_rocket/views/simple/simple_profiles.dart';
 import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -53,19 +52,9 @@ class SimpleDashboard extends ConsumerWidget {
   }
 
   Future<void> _unlockExpertMode(BuildContext context, WidgetRef ref) async {
-    final password = await globalState.showCommonDialog<String>(
-      child: InputDialog(
-        title: '开发者选项',
-        labelText: '密码',
-        obscureText: true,
-        value: '',
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return '请输入密码';
-          }
-          return null;
-        },
-      ),
+    final password = await showDialog<String>(
+      context: context,
+      builder: (_) => const _DeveloperPasswordDialog(),
     );
     if (password == null || !context.mounted) return;
     final digest = sha256.convert(utf8.encode(password)).toString();
@@ -131,7 +120,7 @@ class SimpleDashboard extends ConsumerWidget {
                   download: '${lastTraffic.down.traffic.show}/s',
                   today: totalTraffic.desc,
                   onProfiles: () => _open(context, const SimpleProfilesView()),
-                  onProxies: () => _open(context, const ProxiesView()),
+                  onProxies: () => _open(context, const SimpleProxiesView()),
                 ),
                 const SizedBox(height: 14),
                 _ConnectionTestCard(
@@ -165,12 +154,22 @@ class _SimpleHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(18),
+          child: Image.asset(
+            brandingLogoPath,
+            width: 58,
+            height: 58,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const SizedBox(width: 14),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                appName,
+                '卞恺 rocket',
                 style: context.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
@@ -198,6 +197,74 @@ class _SimpleHeader extends StatelessWidget {
             shape: BoxShape.circle,
           ),
         ),
+      ],
+    );
+  }
+}
+
+class _DeveloperPasswordDialog extends StatefulWidget {
+  const _DeveloperPasswordDialog();
+
+  @override
+  State<_DeveloperPasswordDialog> createState() =>
+      _DeveloperPasswordDialogState();
+}
+
+class _DeveloperPasswordDialogState extends State<_DeveloperPasswordDialog> {
+  final _formKey = GlobalKey<FormState>();
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    if (_formKey.currentState?.validate() != true) return;
+    Navigator.of(context).pop(_controller.text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(14),
+            child: Image.asset(
+              brandingLogoPath,
+              width: 52,
+              height: 52,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(height: 12),
+          const Text('开发者选项'),
+        ],
+      ),
+      content: Form(
+        key: _formKey,
+        child: TextFormField(
+          controller: _controller,
+          autofocus: true,
+          obscureText: true,
+          decoration: const InputDecoration(labelText: '请输入开发者密码'),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return '请输入开发者密码';
+            }
+            return null;
+          },
+          onFieldSubmitted: (_) => _submit(),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+        ),
+        FilledButton(onPressed: _submit, child: const Text('进入')),
       ],
     );
   }

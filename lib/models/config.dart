@@ -83,6 +83,7 @@ abstract class AppSettingProps with _$AppSettingProps {
     @Default(false) bool hidden,
     @Default(false) bool expertMode,
     @Default(false) bool developerMode,
+    @Default(true) bool useBiankaiDefaultRules,
     @Default(RestoreStrategy.compatible) RestoreStrategy restoreStrategy,
     @Default(true) bool showTrayTitle,
   }) = _AppSettingProps;

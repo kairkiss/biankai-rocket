@@ -1,7 +1,7 @@
 name: biankai_rocket
 description: A personal Android proxy client UI fork based on Mihomo, open-source under GPLv3.
 publish_to: 'none'
-version: 1.1.0+2026052201
+version: 1.1.1+2026052301
 environment:
   sdk: '>=3.8.0 <4.0.0'
 
@@ -91,6 +91,8 @@ flutter:
     - assets/images/avatar/
     - assets/images/empty/
     - assets/images/icon/
+    - assets/branding/
+    - assets/mihomo/
   fonts:
     - family: JetBrainsMono
       fonts:

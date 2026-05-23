@@ -1,5 +1,8 @@
 import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/enum/enum.dart';
 import 'package:biankai_rocket/providers/config.dart';
+import 'package:biankai_rocket/state.dart';
 import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -261,6 +264,20 @@ class AutoCheckUpdateItem extends ConsumerWidget {
 class ExpertModeItem extends ConsumerWidget {
   const ExpertModeItem({super.key});
 
+  Future<void> _exitExpertMode(BuildContext context, WidgetRef ref) async {
+    final res = await globalState.showMessage(
+      title: '返回普通模式',
+      message: const TextSpan(text: '退出专家模式后，高级功能入口会隐藏。是否继续？'),
+    );
+    if (res != true) return;
+    ref
+        .read(appSettingProvider.notifier)
+        .update(
+          (state) => state.copyWith(expertMode: false, developerMode: false),
+        );
+    appController.toPage(PageLabel.dashboard);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final expertMode = ref.watch(
@@ -272,9 +289,69 @@ class ExpertModeItem extends ConsumerWidget {
       delegate: SwitchDelegate(
         value: expertMode,
         onChanged: (value) {
+          if (!value) {
+            _exitExpertMode(context, ref);
+            return;
+          }
           ref
               .read(appSettingProvider.notifier)
               .update((state) => state.copyWith(expertMode: value));
+        },
+      ),
+    );
+  }
+}
+
+class ExitExpertModeItem extends ConsumerWidget {
+  const ExitExpertModeItem({super.key});
+
+  Future<void> _exit(BuildContext context, WidgetRef ref) async {
+    final res = await globalState.showMessage(
+      title: '返回普通模式',
+      message: const TextSpan(text: '退出专家模式后，高级功能入口会隐藏。是否继续？'),
+    );
+    if (res != true) return;
+    ref
+        .read(appSettingProvider.notifier)
+        .update(
+          (state) => state.copyWith(expertMode: false, developerMode: false),
+        );
+    appController.toPage(PageLabel.dashboard);
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final expertMode = ref.watch(
+      appSettingProvider.select((state) => state.expertMode),
+    );
+    if (!expertMode) return const SizedBox.shrink();
+    return ListItem(
+      title: const Text('返回普通模式'),
+      subtitle: const Text('隐藏高级功能入口'),
+      leading: const Icon(Icons.home_outlined),
+      trailing: const Icon(Icons.chevron_right_rounded),
+      onTap: () => _exit(context, ref),
+    );
+  }
+}
+
+class DefaultRulesTemplateItem extends ConsumerWidget {
+  const DefaultRulesTemplateItem({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final enabled = ref.watch(
+      appSettingProvider.select((state) => state.useBiankaiDefaultRules),
+    );
+    return ListItem.switchItem(
+      title: const Text('使用卞恺 rocket 默认分流模板'),
+      subtitle: const Text('仅为简化节点订阅补充分流，完整配置不覆盖'),
+      delegate: SwitchDelegate(
+        value: enabled,
+        onChanged: (value) {
+          ref
+              .read(appSettingProvider.notifier)
+              .update((state) => state.copyWith(useBiankaiDefaultRules: value));
         },
       ),
     );
@@ -301,6 +378,8 @@ class ApplicationSettingView extends StatelessWidget {
       CloseConnectionsItem(),
       UsageItem(),
       ExpertModeItem(),
+      ExitExpertModeItem(),
+      DefaultRulesTemplateItem(),
       if (system.isAndroid) CrashlyticsItem(),
       AutoCheckUpdateItem(),
     ];

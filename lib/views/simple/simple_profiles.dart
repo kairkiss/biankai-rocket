@@ -4,6 +4,7 @@ import 'package:biankai_rocket/enum/enum.dart';
 import 'package:biankai_rocket/models/models.dart';
 import 'package:biankai_rocket/providers/database.dart';
 import 'package:biankai_rocket/providers/providers.dart';
+import 'package:biankai_rocket/state.dart';
 import 'package:biankai_rocket/views/profiles/add.dart';
 import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class _SimpleProfilesViewState extends ConsumerState<SimpleProfilesView> {
   Widget build(BuildContext context) {
     final profiles = ref.watch(profilesProvider);
     final currentProfileId = ref.watch(currentProfileIdProvider);
+    final isLoading = ref.watch(loadingProvider(LoadingTag.profiles));
     return CommonScaffold(
       title: '订阅',
       floatingActionButton: CommonFloatingActionButton(
@@ -48,41 +50,46 @@ class _SimpleProfilesViewState extends ConsumerState<SimpleProfilesView> {
         icon: const Icon(Icons.add_rounded),
         label: '导入订阅',
       ),
-      body: profiles.isEmpty
-          ? Center(
-              child: FilledButton.icon(
-                onPressed: _showAddSheet,
-                icon: const Icon(Icons.cloud_download_outlined),
-                label: const Text('导入订阅'),
-              ),
-            )
-          : ListView.separated(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 96),
-              itemCount: profiles.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 12),
-              itemBuilder: (_, index) {
-                final profile = profiles[index];
-                return _ProfileCard(
-                  profile: profile,
-                  selected: profile.id == currentProfileId,
-                  onSelect: () {
-                    ref.read(currentProfileIdProvider.notifier).value =
-                        profile.id;
-                  },
-                  onDetails: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            SimpleProfileDetailsView(profileId: profile.id),
-                      ),
+      body: Stack(
+        children: [
+          profiles.isEmpty
+              ? Center(
+                  child: FilledButton.icon(
+                    onPressed: _showAddSheet,
+                    icon: const Icon(Icons.cloud_download_outlined),
+                    label: const Text('导入订阅'),
+                  ),
+                )
+              : ListView.separated(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 96),
+                  itemCount: profiles.length,
+                  separatorBuilder: (_, _) => const SizedBox(height: 12),
+                  itemBuilder: (_, index) {
+                    final profile = profiles[index];
+                    return _ProfileCard(
+                      profile: profile,
+                      selected: profile.id == currentProfileId,
+                      onSelect: () {
+                        ref.read(currentProfileIdProvider.notifier).value =
+                            profile.id;
+                      },
+                      onDetails: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                SimpleProfileDetailsView(profileId: profile.id),
+                          ),
+                        );
+                      },
+                      onUpdate: profile.type == ProfileType.url
+                          ? () => _update(profile)
+                          : null,
                     );
                   },
-                  onUpdate: profile.type == ProfileType.url
-                      ? () => _update(profile)
-                      : null,
-                );
-              },
-            ),
+                ),
+          if (isLoading) const Center(child: CircularProgressIndicator()),
+        ],
+      ),
     );
   }
 }
@@ -97,6 +104,30 @@ class SimpleProfileDetailsView extends ConsumerWidget {
       () => appController.updateProfile(profile, showLoading: true),
       title: '更新订阅',
     );
+  }
+
+  Future<void> _delete(
+    BuildContext context,
+    WidgetRef ref,
+    Profile profile,
+  ) async {
+    final isCurrent = ref.read(currentProfileIdProvider) == profile.id;
+    final message = isCurrent
+        ? '当前正在使用该订阅。删除后会自动切换到其他订阅；如果没有其他订阅，代理会停止。是否继续？'
+        : '删除订阅后无法在本地恢复，是否继续？';
+    final res = await globalState.showMessage(
+      title: '删除订阅',
+      message: TextSpan(text: message),
+    );
+    if (res != true) return;
+    await appController.safeRun(
+      () => appController.deleteProfile(profile.id),
+      title: '删除订阅',
+    );
+    if (context.mounted) {
+      Navigator.of(context).pop();
+      context.showNotifier('订阅已删除');
+    }
   }
 
   @override
@@ -141,6 +172,15 @@ class SimpleProfileDetailsView extends ConsumerWidget {
               icon: const Icon(Icons.sync_rounded),
               label: const Text('更新订阅'),
             ),
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            onPressed: () => _delete(context, ref, profile),
+            icon: const Icon(Icons.delete_outline_rounded),
+            label: const Text('删除订阅'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: context.colorScheme.error,
+            ),
+          ),
         ],
       ),
     );

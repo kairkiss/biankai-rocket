@@ -348,6 +348,7 @@ abstract class MakeRealProfileState with _$MakeRealProfileState {
     required bool appendSystemDns,
     required List<Rule> addedRules,
     required String defaultUA,
+    required bool useBiankaiDefaultRules,
   }) = _MakeRealProfileState;
 }
 

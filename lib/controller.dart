@@ -682,6 +682,9 @@ extension SetupControllerExt on AppController {
       ),
     );
     final overrideDns = _ref.read(overrideDnsProvider);
+    final useBiankaiDefaultRules = _ref.read(
+      appSettingProvider.select((state) => state.useBiankaiDefaultRules),
+    );
     final appendSystemDns = networkVM2.a;
     final routeMode = networkVM2.b;
     final configMap = await coreController.getConfig(profileId);
@@ -710,6 +713,7 @@ extension SetupControllerExt on AppController {
         appendSystemDns: appendSystemDns,
         addedRules: addedRules,
         defaultUA: defaultUA,
+        useBiankaiDefaultRules: useBiankaiDefaultRules,
       ),
     );
     return res;

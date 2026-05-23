@@ -85,7 +85,7 @@ Future<Map<String, dynamic>> makeRealProfileTask(
 Future<Map<String, dynamic>> _makeRealProfileTask(
   MakeRealProfileState data,
 ) async {
-  final rawConfig = Map.from(data.rawConfig);
+  final rawConfig = Map<String, dynamic>.from(data.rawConfig);
   final realPatchConfig = data.realPatchConfig;
   final profilesPath = data.profilesPath;
   final profileId = data.profileId;
@@ -93,6 +93,7 @@ Future<Map<String, dynamic>> _makeRealProfileTask(
   final addedRules = data.addedRules;
   final appendSystemDns = data.appendSystemDns;
   final defaultUA = data.defaultUA;
+  final useBiankaiDefaultRules = data.useBiankaiDefaultRules;
   String getProvidersFilePathInner(String type, String url) {
     return join(
       profilesPath,
@@ -157,6 +158,9 @@ Future<Map<String, dynamic>> _makeRealProfileTask(
         );
       }
     }
+  }
+  if (useBiankaiDefaultRules) {
+    _applyBiankaiDefaultRules(rawConfig);
   }
   if (rawConfig['rule-providers'] != null) {
     final ruleProviders = rawConfig['rule-providers'] as Map;
@@ -256,6 +260,128 @@ Future<Map<String, dynamic>> _makeRealProfileTask(
   }
   rawConfig['rules'] = rules;
   return Map<String, dynamic>.from(rawConfig);
+}
+
+bool _hasNonEmptyList(Map config, String key) {
+  final value = config[key];
+  return value is List && value.isNotEmpty;
+}
+
+List<String> _proxyNames(Map rawConfig) {
+  final proxies = rawConfig['proxies'];
+  if (proxies is! List) return [];
+  return proxies
+      .whereType<Map>()
+      .map((proxy) => proxy['name'])
+      .whereType<String>()
+      .where((name) => name.isNotEmpty)
+      .toSet()
+      .toList();
+}
+
+String? _defaultProxyGroupName(Map rawConfig) {
+  final proxyGroups = rawConfig['proxy-groups'];
+  if (proxyGroups is! List || proxyGroups.isEmpty) return null;
+  final preferredNames = [
+    'PROXY',
+    'Proxy',
+    'GLOBAL',
+    '节点选择',
+    '🚀 节点选择',
+    '自动选择',
+  ];
+  for (final name in preferredNames) {
+    final matches = proxyGroups.whereType<Map>().where((group) {
+      return group['name'] == name;
+    }).toList();
+    if (matches.isNotEmpty) return name;
+  }
+  final groups = proxyGroups.whereType<Map>().toList();
+  return groups.isNotEmpty ? groups.first['name'] as String? : null;
+}
+
+void _applyBiankaiDefaultRules(Map<String, dynamic> rawConfig) {
+  final hasRules = _hasNonEmptyList(rawConfig, 'rules');
+  final hasProxyGroups = _hasNonEmptyList(rawConfig, 'proxy-groups');
+  if (hasRules && hasProxyGroups) return;
+
+  final names = _proxyNames(rawConfig);
+  if (!hasProxyGroups && names.isNotEmpty) {
+    rawConfig['proxy-groups'] = [
+      {'name': 'PROXY', 'type': 'select', 'proxies': names},
+    ];
+  }
+
+  final groupName = _defaultProxyGroupName(rawConfig);
+  if (groupName == null || groupName.isEmpty) return;
+
+  final ruleProviders = rawConfig['rule-providers'];
+  rawConfig['rule-providers'] = {
+    if (ruleProviders is Map) ...ruleProviders,
+    ..._biankaiDefaultRuleProviders,
+  };
+  if (!hasRules) {
+    rawConfig['rules'] = _biankaiDefaultRules(groupName);
+  }
+}
+
+const _biankaiDefaultRuleProviders = {
+  'private_domain': {
+    'type': 'http',
+    'behavior': 'domain',
+    'format': 'mrs',
+    'interval': 86400,
+    'path': './rules/private.mrs',
+    'url':
+        'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs',
+  },
+  'cn_domain': {
+    'type': 'http',
+    'behavior': 'domain',
+    'format': 'mrs',
+    'interval': 86400,
+    'path': './rules/cn.mrs',
+    'url':
+        'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs',
+  },
+  'geolocation_not_cn': {
+    'type': 'http',
+    'behavior': 'domain',
+    'format': 'mrs',
+    'interval': 86400,
+    'path': './rules/geolocation-!cn.mrs',
+    'url':
+        'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs',
+  },
+  'private_ip': {
+    'type': 'http',
+    'behavior': 'ipcidr',
+    'format': 'mrs',
+    'interval': 86400,
+    'path': './rules/private_ip.mrs',
+    'url':
+        'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs',
+  },
+  'cn_ip': {
+    'type': 'http',
+    'behavior': 'ipcidr',
+    'format': 'mrs',
+    'interval': 86400,
+    'path': './rules/cn_ip.mrs',
+    'url':
+        'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs',
+  },
+};
+
+List<String> _biankaiDefaultRules(String proxyGroup) {
+  return [
+    'RULE-SET,private_domain,DIRECT',
+    'RULE-SET,private_ip,DIRECT',
+    'RULE-SET,cn_domain,DIRECT',
+    'RULE-SET,cn_ip,DIRECT',
+    'RULE-SET,geolocation_not_cn,$proxyGroup',
+    'MATCH,$proxyGroup',
+  ];
 }
 
 Future<List<String>> shakingProfileTask(
