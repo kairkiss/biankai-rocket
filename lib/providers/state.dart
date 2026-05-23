@@ -1,8 +1,8 @@
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/state.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/models.dart';
+import 'package:biankai_rocket/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -43,7 +43,8 @@ GroupsState currentGroupsState(Ref ref) {
 
 @riverpod
 NavigationItemsState navigationItemsState(Ref ref) {
-  final openLogs = ref.watch(appSettingProvider).openLogs;
+  final appSetting = ref.watch(appSettingProvider);
+  final openLogs = appSetting.openLogs;
   final hasProfiles = ref.watch(
     profilesProvider.select((state) => state.isNotEmpty),
   );
@@ -55,6 +56,7 @@ NavigationItemsState navigationItemsState(Ref ref) {
     value: navigation.getItems(
       openLogs: openLogs,
       hasProxies: !isInit ? hasProfiles : hasProxies,
+      expertMode: appSetting.expertMode,
     ),
   );
 }

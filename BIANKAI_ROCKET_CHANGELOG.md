@@ -26,3 +26,20 @@
 - 节点切换逻辑未修改。
 - 规则引擎未修改。
 - 日志底层采集逻辑未修改。
+
+# 卞恺rocket v1.1.0
+
+## 更新摘要
+
+- 默认启用面向日常使用的 Simple Mode。
+- Simple Mode 首页保留代理总开关、当前订阅、当前节点、上下行速度、今日用量和规则模式切换。
+- Simple Mode 提供订阅导入、订阅详情、节点选择和连通性测试入口。
+- 增加开发者选项密码解锁入口，解锁后进入保留完整高级功能的 Expert Mode。
+- 开发者密码校验集中在配置常量中，UI 组件不保存密码明文。
+- 前台仓库地址与品牌文案切换到 `kairkiss/biankai-rocket`。
+- Dart package 名称迁移到 `biankai_rocket`。
+
+## 稳定性边界
+
+- VPN Service、Mihomo 核心、订阅解析、节点切换、规则和日志底层逻辑未重写。
+- Simple Mode 通过 UI 分层隐藏高级入口，Expert Mode 继续使用现有完整页面。

@@ -4,7 +4,7 @@ import android.content.ComponentName
 
 object Components {
     const val PACKAGE_NAME = "com.biankai.rocket"
-    private const val APP_COMPONENT_PACKAGE_NAME = "com.follow.clash"
+    private const val APP_COMPONENT_PACKAGE_NAME = "com.biankai.rocket"
 
     val MAIN_ACTIVITY =
         ComponentName(GlobalState.packageName, "$APP_COMPONENT_PACKAGE_NAME.MainActivity")

@@ -1,4 +1,4 @@
-package com.follow.clash
+package com.biankai.rocket
 
 import com.follow.clash.common.GlobalState
 import com.follow.clash.common.ServiceDelegate

@@ -4,9 +4,9 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/models.dart';
 import 'package:flutter/material.dart';
 
 const appName = '卞恺rocket';
@@ -55,7 +55,9 @@ const localhost = '127.0.0.1';
 const clashConfigKey = 'clash_config';
 const configKey = 'config';
 const double dialogCommonWidth = 300;
-const repository = 'chen08209/FlClash';
+const repository = 'kairkiss/biankai-rocket';
+const expertModePasswordHash =
+    '14bb7d51f04df9c4d1c6a4e61eff54b33b6954ed553c2b2e9d2a01fa8ff6c8d7';
 const defaultExternalController = '127.0.0.1:9090';
 const maxMobileWidth = 600;
 const maxLaptopWidth = 840;

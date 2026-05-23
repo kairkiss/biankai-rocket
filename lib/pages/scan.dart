@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:fl_clash/common/color.dart';
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/widgets/activate_box.dart';
+import 'package:biankai_rocket/common/color.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/widgets/activate_box.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 

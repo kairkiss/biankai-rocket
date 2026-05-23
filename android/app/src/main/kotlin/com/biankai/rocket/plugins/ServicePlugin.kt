@@ -1,11 +1,11 @@
-package com.follow.clash.plugins
+package com.biankai.rocket.plugins
 
-import com.follow.clash.RunState
-import com.follow.clash.Service
-import com.follow.clash.State
+import com.biankai.rocket.RunState
+import com.biankai.rocket.Service
+import com.biankai.rocket.State
 import com.follow.clash.common.Components
-import com.follow.clash.invokeMethodOnMainThread
-import com.follow.clash.models.SharedState
+import com.biankai.rocket.invokeMethodOnMainThread
+import com.biankai.rocket.models.SharedState
 import com.google.gson.Gson
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall

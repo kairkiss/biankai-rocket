@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/common.dart';
-import 'package:fl_clash/providers/providers.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/common.dart';
+import 'package:biankai_rocket/providers/providers.dart';
+import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

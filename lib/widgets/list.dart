@@ -1,7 +1,7 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/state.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

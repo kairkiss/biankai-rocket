@@ -1,7 +1,7 @@
-name: fl_clash
-description: A multi-platform proxy client based on ClashMeta, simple and easy to use, open-source and ad-free.
+name: biankai_rocket
+description: A personal Android proxy client UI fork based on Mihomo, open-source under GPLv3.
 publish_to: 'none'
-version: 0.8.92+2026020201
+version: 1.1.0+2026052201
 environment:
   sdk: '>=3.8.0 <4.0.0'
 

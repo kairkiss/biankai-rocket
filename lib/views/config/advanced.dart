@@ -1,12 +1,12 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/models/clash_config.dart';
-import 'package:fl_clash/providers/config.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/views/config/dns.dart';
-import 'package:fl_clash/views/config/network.dart';
-import 'package:fl_clash/views/config/scripts.dart';
-import 'package:fl_clash/widgets/list.dart';
-import 'package:fl_clash/widgets/scaffold.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/models/clash_config.dart';
+import 'package:biankai_rocket/providers/config.dart';
+import 'package:biankai_rocket/state.dart';
+import 'package:biankai_rocket/views/config/dns.dart';
+import 'package:biankai_rocket/views/config/network.dart';
+import 'package:biankai_rocket/views/config/scripts.dart';
+import 'package:biankai_rocket/widgets/list.dart';
+import 'package:biankai_rocket/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

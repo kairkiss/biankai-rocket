@@ -1,6 +1,6 @@
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/views/views.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/models.dart';
+import 'package:biankai_rocket/views/views.dart';
 import 'package:flutter/material.dart';
 
 class Navigation {
@@ -9,15 +9,20 @@ class Navigation {
   List<NavigationItem> getItems({
     bool openLogs = false,
     bool hasProxies = false,
+    bool expertMode = false,
   }) {
+    final dashboardItem = NavigationItem(
+      keep: false,
+      icon: Icon(Icons.home_outlined),
+      label: PageLabel.dashboard,
+      builder: (_) =>
+          const DashboardView(key: GlobalObjectKey(PageLabel.dashboard)),
+    );
+    if (!expertMode) {
+      return [dashboardItem];
+    }
     return [
-      NavigationItem(
-        keep: false,
-        icon: Icon(Icons.home_outlined),
-        label: PageLabel.dashboard,
-        builder: (_) =>
-            const DashboardView(key: GlobalObjectKey(PageLabel.dashboard)),
-      ),
+      dashboardItem,
       NavigationItem(
         icon: const Icon(Icons.swap_vert_circle_outlined),
         label: PageLabel.proxies,

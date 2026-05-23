@@ -1,6 +1,6 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/providers/config.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/providers/config.dart';
+import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -258,6 +258,29 @@ class AutoCheckUpdateItem extends ConsumerWidget {
   }
 }
 
+class ExpertModeItem extends ConsumerWidget {
+  const ExpertModeItem({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final expertMode = ref.watch(
+      appSettingProvider.select((state) => state.expertMode),
+    );
+    return ListItem.switchItem(
+      title: const Text('专家模式'),
+      subtitle: const Text('关闭后返回普通模式'),
+      delegate: SwitchDelegate(
+        value: expertMode,
+        onChanged: (value) {
+          ref
+              .read(appSettingProvider.notifier)
+              .update((state) => state.copyWith(expertMode: value));
+        },
+      ),
+    );
+  }
+}
+
 class ApplicationSettingView extends StatelessWidget {
   const ApplicationSettingView({super.key});
 
@@ -277,6 +300,7 @@ class ApplicationSettingView extends StatelessWidget {
       OpenLogsItem(),
       CloseConnectionsItem(),
       UsageItem(),
+      ExpertModeItem(),
       if (system.isAndroid) CrashlyticsItem(),
       AutoCheckUpdateItem(),
     ];

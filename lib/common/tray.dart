@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/models.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:tray_manager/tray_manager.dart';

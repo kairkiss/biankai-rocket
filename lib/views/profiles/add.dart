@@ -1,8 +1,8 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/pages/scan.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/pages/scan.dart';
+import 'package:biankai_rocket/state.dart';
+import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AddProfileView extends StatelessWidget {

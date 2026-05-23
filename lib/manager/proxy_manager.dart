@@ -1,6 +1,6 @@
-import 'package:fl_clash/common/proxy.dart';
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/providers/state.dart';
+import 'package:biankai_rocket/common/proxy.dart';
+import 'package:biankai_rocket/models/models.dart';
+import 'package:biankai_rocket/providers/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

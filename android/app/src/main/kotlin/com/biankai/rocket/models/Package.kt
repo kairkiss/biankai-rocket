@@ -1,4 +1,4 @@
-package com.follow.clash.models
+package com.biankai.rocket.models
 
 data class Package(
     val packageName: String,

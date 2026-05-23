@@ -8,31 +8,21 @@
 
 [![License](https://img.shields.io/github/license/kairkiss/biankai-rocket?style=flat-square)](LICENSE)
 
-Personal Android UI fork of [chen08209/FlClash](https://github.com/chen08209/FlClash), focused on a clean iOS-style interface while keeping the original VPN service, Mihomo/ClashMeta core, subscription parsing, proxy switching, rules, and low-level logging logic stable.
+Personal Android proxy client focused on a compact Simple Mode and a full Expert Mode.
 
-This project remains open source under GPLv3. Original FlClash copyright notices and license are preserved.
-
-on Desktop:
-<p style="text-align: center;">
-    <img alt="desktop" src="snapshots/desktop.gif">
-</p>
-
-on Mobile:
-<p style="text-align: center;">
-    <img alt="mobile" src="snapshots/mobile.gif">
-</p>
+This project remains open source under GPLv3. It is derived from the GPLv3 project [chen08209/FlClash](https://github.com/chen08209/FlClash); the original license and copyright notices are preserved.
 
 ## Features
 
-✈️ Multi-platform: Android, Windows, macOS and Linux
+✈️ Android Simple Mode for daily subscription, node, mode, and proxy control
 
-💻 Adaptive multiple screen sizes, Multiple color themes available
+💻 Expert Mode keeps the full advanced management UI
 
-💡 Based on Material You Design, [Surfboard](https://github.com/getsurfboard/surfboard)-like UI
+💡 Light/dark iOS-style card layout with blue emphasis
 
-☁️ Supports data sync via WebDAV
+☁️ Existing Mihomo, subscription, rule, log, and VPN paths stay intact
 
-✨ Support subscription link, Dark mode
+✨ GPLv3 source and modification notes remain in this repository
 
 ## Use
 
@@ -59,7 +49,7 @@ Support the following actions
 
 ## Download
 
-<a href="https://chen08209.github.io/FlClash-fdroid-repo/repo?fingerprint=789D6D32668712EF7672F9E58DEEB15FBD6DCEEC5AE7A4371EA72F2AAE8A12FD"><img alt="Get it on F-Droid" src="snapshots/get-it-on-fdroid.svg" width="200px"/></a> <a href="https://github.com/chen08209/FlClash/releases"><img alt="Get it on GitHub" src="snapshots/get-it-on-github.svg" width="200px"/></a>
+Use the release assets published from this repository.
 
 ## Build
 
@@ -115,13 +105,3 @@ Support the following actions
            ```bash
            dart .\setup.dart macos --arch <arm64 | amd64>
            ```
-
-## Star
-
-The easiest way to support developers is to click on the star (⭐) at the top of the page.
-
-<p style="text-align: center;">
-    <a href="https://api.star-history.com/svg?repos=chen08209/FlClash&Date">
-        <img alt="start" width=50% src="https://api.star-history.com/svg?repos=chen08209/FlClash&Date"/>
-    </a>
-</p>

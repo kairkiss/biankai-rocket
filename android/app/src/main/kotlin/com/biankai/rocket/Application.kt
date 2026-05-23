@@ -1,4 +1,4 @@
-package com.follow.clash
+package com.biankai.rocket
 
 import android.app.Application
 import android.content.Context

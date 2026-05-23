@@ -1,10 +1,10 @@
-package com.follow.clash
+package com.biankai.rocket
 
 import android.net.VpnService
 import com.follow.clash.common.GlobalState
-import com.follow.clash.models.SharedState
-import com.follow.clash.plugins.AppPlugin
-import com.follow.clash.plugins.TilePlugin
+import com.biankai.rocket.models.SharedState
+import com.biankai.rocket.plugins.AppPlugin
+import com.biankai.rocket.plugins.TilePlugin
 import com.follow.clash.service.models.NotificationParams
 import com.google.gson.Gson
 import io.flutter.embedding.engine.FlutterEngine

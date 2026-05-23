@@ -8,31 +8,21 @@
 
 [![License](https://img.shields.io/github/license/kairkiss/biankai-rocket?style=flat-square)](LICENSE)
 
-基于 [chen08209/FlClash](https://github.com/chen08209/FlClash) 的个人 Android UI 魔改版，重点调整为简洁的类 iOS 信息架构，同时尽量保持原 VPN Service、Mihomo/ClashMeta 核心、订阅解析、节点切换、规则与日志底层逻辑稳定。
+面向 Android 日常代理使用的个人客户端，默认提供精简 Simple Mode，并保留完整 Expert Mode。
 
-本项目继续遵循 GPLv3 开源协议，并保留原 FlClash 版权说明与 LICENSE。
-
-on Desktop:
-<p style="text-align: center;">
-    <img alt="desktop" src="snapshots/desktop.gif">
-</p>
-
-on Mobile:
-<p style="text-align: center;">
-    <img alt="mobile" src="snapshots/mobile.gif">
-</p>
+本项目继续遵循 GPLv3 开源协议，派生自 GPLv3 项目 [chen08209/FlClash](https://github.com/chen08209/FlClash)，并保留原始许可证与版权说明。
 
 ## Features
 
-✈️ 多平台: Android, Windows, macOS and Linux
+✈️ Simple Mode 聚焦订阅、节点、模式和代理开关
 
-💻 自适应多个屏幕尺寸,多种颜色主题可供选择
+💻 Expert Mode 保留完整高级管理页面
 
-💡 基本 Material You 设计, 类[Surfboard](https://github.com/getsurfboard/surfboard)用户界面
+💡 浅色白灰、深色黑灰和蓝色强调的卡片式界面
 
-☁️ 支持通过WebDAV同步数据
+☁️ 原有 Mihomo、订阅、规则、日志和 VPN 链路保持稳定
 
-✨ 支持一键导入订阅, 深色模式
+✨ 仓库保留 GPLv3 源码与修改说明
 
 ## Use
 
@@ -59,7 +49,7 @@ on Mobile:
 
 ## Download
 
-<a href="https://chen08209.github.io/FlClash-fdroid-repo/repo?fingerprint=789D6D32668712EF7672F9E58DEEB15FBD6DCEEC5AE7A4371EA72F2AAE8A12FD"><img alt="Get it on F-Droid" src="snapshots/get-it-on-fdroid.svg" width="200px"/></a> <a href="https://github.com/chen08209/FlClash/releases"><img alt="Get it on GitHub" src="snapshots/get-it-on-github.svg" width="200px"/></a>
+请使用本仓库发布的 release 资源。
 
 ## Build
 
@@ -115,13 +105,3 @@ on Mobile:
            ```bash
            dart .\setup.dart macos --arch <arm64 | amd64>
            ```
-
-## Star History
-
-支持开发者的最简单方式是点击页面顶部的星标（⭐）。
-
-<p style="text-align: center;">
-    <a href="https://api.star-history.com/svg?repos=chen08209/FlClash&Date">
-        <img alt="start" width=50% src="https://api.star-history.com/svg?repos=chen08209/FlClash&Date"/>
-    </a>
-</p>

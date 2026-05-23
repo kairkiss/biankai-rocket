@@ -1,10 +1,10 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/manager/app_manager.dart';
-import 'package:fl_clash/models/common.dart';
-import 'package:fl_clash/providers/providers.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/manager/app_manager.dart';
+import 'package:biankai_rocket/models/common.dart';
+import 'package:biankai_rocket/providers/providers.dart';
+import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,24 +30,24 @@ class HomePage extends StatelessWidget {
               final isMobile = state.viewMode == ViewMode.mobile;
               final navigationItems = state.navigationItems;
               final currentIndex = state.currentIndex;
-              final bottomNavigationBar = NavigationBarTheme(
-                data: _NavigationBarDefaultsM3(context),
-                child: NavigationBar(
-                  destinations: navigationItems
-                      .map(
-                        (e) => NavigationDestination(
-                          icon: e.icon,
-                          label: Intl.message(e.label.name),
-                        ),
-                      )
-                      .toList(),
-                  onDestinationSelected: (index) {
-                    appController.toPage(navigationItems[index].label);
-                  },
-                  selectedIndex: currentIndex,
-                ),
-              );
-              if (isMobile) {
+              if (isMobile && navigationItems.length > 1) {
+                final bottomNavigationBar = NavigationBarTheme(
+                  data: _NavigationBarDefaultsM3(context),
+                  child: NavigationBar(
+                    destinations: navigationItems
+                        .map(
+                          (e) => NavigationDestination(
+                            icon: e.icon,
+                            label: Intl.message(e.label.name),
+                          ),
+                        )
+                        .toList(),
+                    onDestinationSelected: (index) {
+                      appController.toPage(navigationItems[index].label);
+                    },
+                    selectedIndex: currentIndex,
+                  ),
+                );
                 return AnnotatedRegion<SystemUiOverlayStyle>(
                   value: systemUiOverlayStyle.copyWith(
                     systemNavigationBarColor:

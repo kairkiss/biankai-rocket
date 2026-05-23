@@ -1,12 +1,12 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/core/core.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/providers/app.dart';
-import 'package:fl_clash/providers/config.dart';
-import 'package:fl_clash/providers/state.dart';
-import 'package:fl_clash/state.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/core/core.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/models.dart';
+import 'package:biankai_rocket/providers/app.dart';
+import 'package:biankai_rocket/providers/config.dart';
+import 'package:biankai_rocket/providers/state.dart';
+import 'package:biankai_rocket/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

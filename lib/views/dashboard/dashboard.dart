@@ -1,16 +1,29 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/controller.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/providers/providers.dart';
-import 'package:fl_clash/views/application_setting.dart';
-import 'package:fl_clash/views/config/rules.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/controller.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/models.dart';
+import 'package:biankai_rocket/providers/providers.dart';
+import 'package:biankai_rocket/views/application_setting.dart';
+import 'package:biankai_rocket/views/config/rules.dart';
+import 'package:biankai_rocket/views/dashboard/simple_dashboard.dart';
+import 'package:biankai_rocket/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DashboardView extends ConsumerWidget {
   const DashboardView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final expertMode = ref.watch(
+      appSettingProvider.select((state) => state.expertMode),
+    );
+    return expertMode ? const _ExpertDashboardView() : const SimpleDashboard();
+  }
+}
+
+class _ExpertDashboardView extends ConsumerWidget {
+  const _ExpertDashboardView();
 
   String _modeLabel(Mode mode) {
     return switch (mode) {

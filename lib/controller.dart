@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:fl_clash/core/core.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/plugins/app.dart';
-import 'package:fl_clash/providers/providers.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/widgets/dialog.dart';
+import 'package:biankai_rocket/core/core.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/plugins/app.dart';
+import 'package:biankai_rocket/providers/providers.dart';
+import 'package:biankai_rocket/state.dart';
+import 'package:biankai_rocket/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';

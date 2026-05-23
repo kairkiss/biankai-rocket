@@ -1,4 +1,4 @@
-package com.follow.clash.plugins
+package com.biankai.rocket.plugins
 
 import android.Manifest
 import android.app.Activity
@@ -21,9 +21,9 @@ import com.follow.clash.common.Components
 import com.follow.clash.common.GlobalState
 import com.follow.clash.common.QuickAction
 import com.follow.clash.common.quickIntent
-import com.follow.clash.getPackageIconPath
-import com.follow.clash.models.Package
-import com.follow.clash.showToast
+import com.biankai.rocket.getPackageIconPath
+import com.biankai.rocket.models.Package
+import com.biankai.rocket.showToast
 import com.google.gson.Gson
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin

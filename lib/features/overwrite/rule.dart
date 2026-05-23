@@ -1,13 +1,13 @@
 library;
 
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/clash_config.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/widgets/card.dart';
-import 'package:fl_clash/widgets/dialog.dart';
-import 'package:fl_clash/widgets/input.dart';
-import 'package:fl_clash/widgets/list.dart';
+import 'package:biankai_rocket/common/common.dart';
+import 'package:biankai_rocket/enum/enum.dart';
+import 'package:biankai_rocket/models/clash_config.dart';
+import 'package:biankai_rocket/state.dart';
+import 'package:biankai_rocket/widgets/card.dart';
+import 'package:biankai_rocket/widgets/dialog.dart';
+import 'package:biankai_rocket/widgets/input.dart';
+import 'package:biankai_rocket/widgets/list.dart';
 import 'package:flutter/material.dart';
 
 class RuleItem extends StatelessWidget {

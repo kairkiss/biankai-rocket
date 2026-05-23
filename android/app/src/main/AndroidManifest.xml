@@ -24,13 +24,13 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:name="com.follow.clash.Application"
+        android:name="com.biankai.rocket.Application"
         android:banner="@mipmap/ic_banner"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="卞恺rocket">
         <activity
-            android:name="com.follow.clash.MainActivity"
+            android:name="com.biankai.rocket.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -66,7 +66,7 @@
         </activity>
 
         <activity
-            android:name="com.follow.clash.TempActivity"
+            android:name="com.biankai.rocket.TempActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:theme="@style/TransparentTheme">
@@ -85,7 +85,7 @@
         </activity>
 
         <service
-            android:name="com.follow.clash.TileService"
+            android:name="com.biankai.rocket.TileService"
             android:exported="true"
             android:icon="@drawable/ic"
             android:label="卞恺rocket"
@@ -99,7 +99,7 @@
         </service>
 
         <receiver
-            android:name="com.follow.clash.BroadcastReceiver"
+            android:name="com.biankai.rocket.BroadcastReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="${applicationId}.permission.RECEIVE_BROADCASTS">

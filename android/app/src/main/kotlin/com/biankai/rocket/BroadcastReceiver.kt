@@ -1,4 +1,4 @@
-package com.follow.clash
+package com.biankai.rocket
 
 import android.content.BroadcastReceiver
 import android.content.Context

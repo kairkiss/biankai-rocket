@@ -1,7 +1,7 @@
-import 'package:fl_clash/l10n/l10n.dart';
-import 'package:fl_clash/manager/manager.dart';
-import 'package:fl_clash/models/state.dart';
-import 'package:fl_clash/widgets/scaffold.dart';
+import 'package:biankai_rocket/l10n/l10n.dart';
+import 'package:biankai_rocket/manager/manager.dart';
+import 'package:biankai_rocket/models/state.dart';
+import 'package:biankai_rocket/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 extension BuildContextExtension on BuildContext {

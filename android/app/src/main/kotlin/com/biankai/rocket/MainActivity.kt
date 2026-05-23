@@ -1,10 +1,10 @@
-package com.follow.clash
+package com.biankai.rocket
 
 import android.os.Bundle
 import com.follow.clash.common.GlobalState
-import com.follow.clash.plugins.AppPlugin
-import com.follow.clash.plugins.ServicePlugin
-import com.follow.clash.plugins.TilePlugin
+import com.biankai.rocket.plugins.AppPlugin
+import com.biankai.rocket.plugins.ServicePlugin
+import com.biankai.rocket.plugins.TilePlugin
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import kotlinx.coroutines.CoroutineScope

@@ -27,6 +27,7 @@ _AppSettingProps _$AppSettingPropsFromJson(Map<String, dynamic> json) =>
       crashlytics: json['crashlytics'] as bool? ?? false,
       minimizeOnExit: json['minimizeOnExit'] as bool? ?? true,
       hidden: json['hidden'] as bool? ?? false,
+      expertMode: json['expertMode'] as bool? ?? false,
       developerMode: json['developerMode'] as bool? ?? false,
       restoreStrategy:
           $enumDecodeNullable(
@@ -58,6 +59,7 @@ Map<String, dynamic> _$AppSettingPropsToJson(_AppSettingProps instance) =>
       'crashlytics': instance.crashlytics,
       'minimizeOnExit': instance.minimizeOnExit,
       'hidden': instance.hidden,
+      'expertMode': instance.expertMode,
       'developerMode': instance.developerMode,
       'restoreStrategy': _$RestoreStrategyEnumMap[instance.restoreStrategy]!,
       'showTrayTitle': instance.showTrayTitle,
